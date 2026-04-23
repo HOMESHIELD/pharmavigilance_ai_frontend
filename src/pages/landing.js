@@ -7,7 +7,6 @@ import {
 import { Link } from "react-router-dom";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import SpeedIcon from "@mui/icons-material/Speed";
-//import SecurityIcon from "@mui/icons-material/Security";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -188,13 +187,11 @@ export default function LandingPage() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // ADDED FIX: Forces browser to start at the top on refresh
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
   return (
-    // ADDED FIX: Increased pt from { xs: 6, md: 10 } to { xs: 12, md: 16 } to clear the Navbar
     <Box sx={{ minHeight: "100vh", color: "#f9fafb", pt: { xs: 12, md: 16 }, pb: { xs: 6, md: 10 }, overflowX: "hidden", position: "relative" }}>
       
       {/* Dynamic Animated Background */}
@@ -358,10 +355,31 @@ export default function LandingPage() {
       {/* ─── TABLE SECTION ─── */}
       <Container maxWidth="lg" sx={{ mb: { xs: 10, md: 15 } }}>
         <ScrollReveal>
-          <Typography variant="h3" sx={{ textAlign: "center", fontWeight: 900, mb: 6, fontSize: { xs: "2rem", md: "3rem" } }}>
+          <Typography variant="h3" sx={{ textAlign: "center", fontWeight: 900, mb: 3, fontSize: { xs: "2rem", md: "3rem" } }}>
             Why This Stands Out
           </Typography>
-          <TableContainer component={Paper} sx={{ background: "rgba(17, 24, 39, 0.8)", backdropFilter: "blur(10px)", border: "1px solid #1f2937", borderRadius: 4, overflow: "hidden", boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}>
+          
+          {/* ADDED: Mobile Swipe Hint */}
+          {isMobile && (
+            <Typography sx={{ color: "#9ca3af", fontSize: "0.9rem", textAlign: "center", mb: 2, fontStyle: "italic" }}>
+              Swipe horizontally to view full comparison 👉
+            </Typography>
+          )}
+
+          {/* FIX: Changed overflow: "hidden" to overflowX: "auto" to allow mobile swiping */}
+          <TableContainer 
+            component={Paper} 
+            sx={{ 
+              background: "rgba(17, 24, 39, 0.8)", 
+              backdropFilter: "blur(10px)", 
+              border: "1px solid #1f2937", 
+              borderRadius: 4, 
+              overflowX: "auto", 
+              boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+              "&::-webkit-scrollbar": { height: "8px" },
+              "&::-webkit-scrollbar-thumb": { backgroundColor: "#374151", borderRadius: "4px" }
+            }}
+          >
             <Table sx={{ minWidth: 600 }}>
               <TableHead>
                 <TableRow sx={{ background: "rgba(0, 229, 255, 0.05)" }}>
