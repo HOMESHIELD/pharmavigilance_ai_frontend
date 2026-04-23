@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import SpeedIcon from "@mui/icons-material/Speed";
-import SecurityIcon from "@mui/icons-material/Security";
+//import SecurityIcon from "@mui/icons-material/Security";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import TranslateIcon from "@mui/icons-material/Translate";
